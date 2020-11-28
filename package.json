@@ -1,0 +1,22 @@
+{
+  "name": "personal-activity-scoreboard",
+  "version": "1.0.0",
+  "description": "Quick tool to track/encourage/game-ify my fitness activity. Probably just useful to me, but enjoy if you find it interesting.",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthewNichols/personal-activity-scoreboard.git"
+  },
+  "keywords": [
+    "fitness"
+  ],
+  "author": "MatthewNichols",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MatthewNichols/personal-activity-scoreboard/issues"
+  },
+  "homepage": "https://github.com/MatthewNichols/personal-activity-scoreboard#readme"
+}
