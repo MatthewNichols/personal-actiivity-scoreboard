@@ -5,16 +5,15 @@
         </div>
 
         <div id="footer">
-            <div id="total">
-                {{tallyTotal}}
-            </div>
+            <button @click="clearItems">Clear</button>
+            <div id="total">{{tallyTotal}}</div>
         </div>
     </div> 
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 import TallyItem from "./tally-item.vue";
 import { RootState } from '../store';
@@ -27,6 +26,9 @@ export default defineComponent({
             items: (state: RootState) => state.dayTally.items
         }),
         ...mapGetters(["tallyTotal"])
+    },
+    methods: {
+        ...mapActions(["clearItems"])
     }
 });
 </script>
@@ -40,6 +42,14 @@ export default defineComponent({
 
     #footer {
         display: flex;
+
+        button {
+            font-size: 18px;
+            background: none;
+            flex-grow: 0;
+            padding: 0 8px;
+            margin: 5px;
+        }
 
         #total {
             width: 100px;

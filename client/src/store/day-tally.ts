@@ -57,15 +57,22 @@ export const DayTallyModule: Module<DayTallyState, RootState> = {
         },
         deleteItem(state: DayTallyState, payload: DayTallyItem) {
             state.items = state.items.filter((item: DayTallyItem) => item.id !== payload.id) || [];
+        },
+        clearItems(state: DayTallyState) {
+            state.items = [];
         }
     },
     actions: {
         insertItem({ commit, state }, item: DayTallyItem) {
-            commit('insertItem', item)
+            commit('insertItem', item);
             StateStore.saveState(state);
         },
         deleteItem({ commit, state }, item: DayTallyItem) {
-            commit('deleteItem', item)
+            commit('deleteItem', item);
+            StateStore.saveState(state);
+        },
+        clearItems({ commit, state }) {
+            commit('clearItems');
             StateStore.saveState(state);
         }
     },
