@@ -31,13 +31,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-button {
+button.activity-item {
     font-size: 18px;
     flex-grow: 0;
-    padding: 30px;
+    flex-shrink: 0;
+    padding: 8px 15px;
     margin: 5px;
     border: 1px solid rgba(#000, 0.2);
     box-shadow: none;
+    width: calc(50vw - 20px);
     
     &:hover {
         border: 1px solid rgba(#000, 1);
