@@ -1,16 +1,18 @@
 <template>
-   <div id="score-tally">
-       ScoreTally
-       <div id="score-tally-items">
-           <div class="score-tally-item" v-for="item in items" v-bind:key="item.id">
-               <div>{{ item.name }}</div>
-               <div class="score-tally-item-points">{{ item.points }}</div>
-           </div>
-       </div>
+    <div id="score-tally">
+        ScoreTally
+        <div id="score-tally-items">
+            <div class="score-tally-item" v-for="item in items" v-bind:key="item.id">
+                <div>{{ item.name }}</div>
+                <div class="score-tally-item-points">{{ item.points }}</div>
+            </div>
+        </div>
 
-       <div id="total">
-           {{tallyTotal}}
-       </div>
+        <div id="footer">
+            <div id="total">
+                {{tallyTotal}}
+            </div>
+        </div>
     </div> 
 </template>
 
@@ -42,6 +44,18 @@ export default defineComponent({
             &-points {
                 margin-left: auto;
             }
+        }
+    }
+
+    #footer {
+        display: flex;
+
+        #total {
+            width: 100px;
+            text-align: right;
+            margin-left: auto;
+            margin-top: 10px;
+            border-top: 2px solid;
         }
     }
 }

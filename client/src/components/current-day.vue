@@ -16,3 +16,9 @@ export default defineComponent({
     components: { ActivitySelector, ScoreTally }
 });
 </script>
+
+<style lang="scss" scoped>
+#score-tally {
+    margin-top: 30px;
+}
+</style>

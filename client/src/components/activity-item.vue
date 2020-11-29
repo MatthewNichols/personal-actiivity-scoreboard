@@ -21,6 +21,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 button {
+    font-size: 18px;
     flex-grow: 0;
     padding: 30px;
     margin: 5px;
