@@ -16,22 +16,20 @@ export interface DayTallyItem {
 
 export const DayTallyModule: Module<DayTallyState, RootState> = {
     state: {
-        items: [
-            { id: "1", activityId: "test", name: "Test", points: 12 },
-            { id: "2", activityId: "test", name: "Test", points: 12 },
-            { id: "3", activityId: "test", name: "Test", points: 12 },
-        ]
+        items: []
     },
     mutations: {
         insertItem(state: DayTallyState, payload: DayTallyItem) {
             state.items.push(payload);
         },
         deleteItem(state: DayTallyState, payload: DayTallyItem) {
-            
             state.items = state.items.filter((item: DayTallyItem) => item.id !== payload.id) || [];
         }
     },
     actions: {
+        insertItem({ commit }, item: DayTallyItem) {
+            commit('insertItem', item)
+        },
         deleteItem({ commit }, item: DayTallyItem) {
             commit('deleteItem', item)
         }

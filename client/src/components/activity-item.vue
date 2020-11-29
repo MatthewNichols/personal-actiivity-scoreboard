@@ -1,5 +1,5 @@
 <template>
-   <button class="activity-item">
+   <button class="activity-item" @click="addTallyItemHandler">
         <div>{{ item.name }}</div>
         <div>{{ item.points }}</div>
     </button> 
@@ -7,7 +7,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { mapActions } from "vuex";
 import { Activity } from '../data/activities';
+import { DayTallyItem } from '../store/day-tally';
 
 export default defineComponent({
     name: 'ActivityItem',
@@ -15,6 +17,15 @@ export default defineComponent({
         item: {
             type: Object as PropType<Activity>
         }
+    },
+    methods: {
+        addTallyItemHandler() {
+            const tallyId = Date.now().toString();
+            const activity = this.item as Activity;
+            const newTallyItem: DayTallyItem = { id: tallyId, activityId: activity.id, name: activity.name, points: activity.points };
+            this.insertItem(newTallyItem);
+        },
+        ...mapActions(['insertItem'])
     }
 });
 </script>

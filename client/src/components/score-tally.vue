@@ -1,6 +1,5 @@
 <template>
     <div id="score-tally">
-        ScoreTally
         <div id="score-tally-items">
             <tally-item v-for="item in items" v-bind:key="item.id" :item="item"/>
         </div>
