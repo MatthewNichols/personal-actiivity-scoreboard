@@ -2,10 +2,7 @@
     <div id="score-tally">
         ScoreTally
         <div id="score-tally-items">
-            <div class="score-tally-item" v-for="item in items" v-bind:key="item.id">
-                <div>{{ item.name }}</div>
-                <div class="score-tally-item-points">{{ item.points }}</div>
-            </div>
+            <tally-item v-for="item in items" v-bind:key="item.id" :item="item"/>
         </div>
 
         <div id="footer">
@@ -19,10 +16,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { mapState, mapGetters } from "vuex";
+
+import TallyItem from "./tally-item.vue";
 import { RootState } from '../store';
 
 export default defineComponent({
     name: 'ScoreTally',
+    components: { TallyItem },
     computed: {
         ...mapState<RootState>({
             items: (state: RootState) => state.dayTally.items
@@ -37,14 +37,6 @@ export default defineComponent({
     #score-tally-items {
         display: flex;
         flex-direction: column;
-
-        .score-tally-item {
-            display: flex;
-
-            &-points {
-                margin-left: auto;
-            }
-        }
     }
 
     #footer {
