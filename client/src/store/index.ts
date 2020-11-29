@@ -1,12 +1,11 @@
-import { createStore } from 'vuex'
+import { Store } from 'vuex'
+import { DayTallyModule, DayTallyState } from "./day-tally";
+export interface RootState {
+  dayTally: DayTallyState;
+}
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+export default new Store<RootState>({
   modules: {
+    dayTally: DayTallyModule
   }
 })
