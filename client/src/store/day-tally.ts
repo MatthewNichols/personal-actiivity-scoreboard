@@ -1,6 +1,8 @@
 import { Module } from 'vuex';
 import { RootState } from '.';
 
+const DayTallyStateKey = "DayTallyState";
+
 export interface DayTallyState {
     items: DayTallyItem[];
 }
@@ -13,10 +15,41 @@ export interface DayTallyItem {
 }
 
 
+const StateStore = {
+    getSavedState(): DayTallyState | null {
+        if (window.localStorage) {
+            const jsonString = localStorage.getItem(DayTallyStateKey);
 
+            if (jsonString == null) {
+                return null;
+            }
+
+            const storedState = JSON.parse(jsonString);
+            return storedState;
+        }
+
+        return null;
+    },
+    saveState(state: DayTallyState) {
+        if (window.localStorage) {
+            const jsonState = JSON.stringify(state);
+            localStorage.setItem(DayTallyStateKey, jsonState);          
+        }
+    }
+
+};
+
+// TODO: Initialize state from StateStore
 export const DayTallyModule: Module<DayTallyState, RootState> = {
-    state: {
-        items: []
+    state(): DayTallyState {
+        const savedState = StateStore.getSavedState();
+        if (savedState !== null) {
+            return savedState;
+        }
+
+        return {
+            items: []
+        }
     },
     mutations: {
         insertItem(state: DayTallyState, payload: DayTallyItem) {
@@ -27,11 +60,13 @@ export const DayTallyModule: Module<DayTallyState, RootState> = {
         }
     },
     actions: {
-        insertItem({ commit }, item: DayTallyItem) {
+        insertItem({ commit, state }, item: DayTallyItem) {
             commit('insertItem', item)
+            StateStore.saveState(state);
         },
-        deleteItem({ commit }, item: DayTallyItem) {
+        deleteItem({ commit, state }, item: DayTallyItem) {
             commit('deleteItem', item)
+            StateStore.saveState(state);
         }
     },
     getters: {
